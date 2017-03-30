@@ -35,7 +35,7 @@ reconocerAmigo cliente amigo
 
 -- Punto 5
 
-grog cliente = Cliente (nombre cliente) 0 (amigos cliente)
+grogXD cliente = Cliente (nombre cliente) 0 (amigos cliente)
 
 --jarraLoca cliente = Cliente (nombre cliente) ((resistencia cliente) - 10) (map (-10) (resistencia(amigos cliente)))
 
