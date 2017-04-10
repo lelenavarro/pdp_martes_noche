@@ -35,7 +35,7 @@ reconocerAmigo cliente amigo
 
 -- Punto 5
 
-grogXD cliente = Cliente (nombre cliente) 0 (amigos cliente)
+grog cliente = Cliente (nombre cliente) 0 (amigos cliente)
 
 --jarraLoca cliente = Cliente (nombre cliente) ((resistencia cliente) - 10) (map (-10) (resistencia(amigos cliente)))
 
@@ -55,3 +55,10 @@ rescatarse horas cliente
 
 -- comentado para que compile, la siguiente línea se corre por consola.
 -- klusener huevo (rescatarse 2 (klusener chocolate (jarraLoca ana)))
+
+data Bebida = Bebida {nombreBebida::String, resistenciaBebida::Int} deriving (Show)
+jarraLoca = Bebida "jarra loca" 200
+
+tomar:: Bebida->Persona->Persona
+
+tomar unaBebida unaPersona = unaPersona {resistencia = resistencia unaPersona - resistenciaBebida unaBebida}
