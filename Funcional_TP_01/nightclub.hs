@@ -59,6 +59,6 @@ rescatarse horas cliente
 data Bebida = Bebida {nombreBebida::String, resistenciaBebida::Int} deriving (Show)
 jarraLoca = Bebida "jarra loca" 200
 
-tomar:: Bebida->Persona->Persona
+tomar:: Bebida->Cliente->Cliente
 
-tomar unaBebida unaPersona = unaPersona {resistencia = resistencia unaPersona - resistenciaBebida unaBebida}
+tomar unaBebida unCliente = Cliente (nombre unCliente)  (resistencia unCliente - resistenciaBebida unaBebida) (amigos unCliente)
