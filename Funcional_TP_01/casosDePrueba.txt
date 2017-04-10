@@ -1,0 +1,26 @@
+-----CASOS DE PRUEBA--------------
+
+PUNTO 3
+-------------------------------------------------------------------------
+Main> comoEsta cristian
+"duro"
+
+Main> comoEsta rodri
+"fresco"
+
+Main> comoEsta marcos
+"duro"
+
+Main> ((comoEsta).(reconocerAmigo rodri).(reconocerAmigo ana)) marcos
+"fresco"
+-------------------------------------------------------------------------
+PUNTO 4
+-------------------------------------------------------------------------
+Main> reconocerAmigo rodri rodri
+Cliente "Rodri" 55 []
+
+Main> reconocerAmigo marcos rodri
+Cliente "Marcos" 40 [Cliente "Rodri" 55 []]
+
+Main> reconocerAmigo rodri marcos
+Cliente "Rodri" 55 [Cliente "Marcos" 40 [Cliente "Rodri" 55 []]]

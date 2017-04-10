@@ -16,7 +16,7 @@ amigos (Cliente _ _ amigos) = amigos
 rodri = Cliente "Rodri" 55 []
 marcos = Cliente "Marcos" 40 [rodri]
 cristian = Cliente "Cristian" 2 []
-ana = Cliente "Ana" 120 [marcos, rodri]
+ana = Cliente "Ana" 120 [marcos,rodri]
 
 -- Punto 3
 
@@ -29,9 +29,11 @@ comoEsta cliente
 
 esAmigoNuevo cliente amigo = not (any (==nombre amigo) (map nombre (amigos cliente))) && (nombre cliente /= nombre amigo)
 
+reconocerAmigo::Cliente->Cliente->Cliente
+
 reconocerAmigo cliente amigo
-    | esAmigoNuevo cliente amigo = (amigos cliente) ++ [amigo]
-    | otherwise = amigos cliente
+    | esAmigoNuevo cliente amigo = Cliente (nombre cliente) (resistencia cliente) ((amigos cliente) ++ [amigo])
+    | otherwise = Cliente (nombre cliente) (resistencia cliente) (amigos cliente)
 
 -- Punto 5
 
@@ -56,14 +58,22 @@ rescatarse horas cliente
 -- comentado para que compile, la siguiente línea se corre por consola.
 -- klusener huevo (rescatarse 2 (klusener chocolate (jarraLoca ana)))
 
-resistenciaKlunster sabor = length(sabor)
-
 data Bebida = Bebida {nombreBebida::String, resistenciaBebida::Int} deriving (Show)
 jarraLoca = Bebida "jarra loca" 10
+
+klunsterSabor:: String->Bebida
 klunsterSabor sabor = Bebida ("Klunster sabor "++ sabor) (length(sabor))
+
+tinticoB::Cliente->Bebida
 tinticoB cliente = Bebida ("Tintico") (5* length(amigos cliente))
+
 sodaB = Bebida "Soda" 0
 
 tomar:: Bebida->Cliente->Cliente
 
 tomar unaBebida unCliente = Cliente (nombre unCliente)  (resistencia unCliente - resistenciaBebida unaBebida) (amigos unCliente)
+
+--Consulta ejecutada con aplicacion parcial y composicion
+--Main> ((tomar (klunsterSabor "huevo")).(rescatarse 2).(tomar (klunsterSabor "chocolate")).(tomar jarraLoca)) ana
+
+--Cliente "Ana" 196 [Cliente "Marcos" 30 [Cliente "Rodri" 45 []],Cliente "Rodri" 45 []]
