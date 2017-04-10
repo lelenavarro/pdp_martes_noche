@@ -1,7 +1,7 @@
------CASOS DE PRUEBA--------------
+----------------------------------------------CASOS DE PRUEBA-----------------------------------------------
 
 PUNTO 3
--------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
 Main> comoEsta cristian
 "duro"
 
@@ -13,14 +13,56 @@ Main> comoEsta marcos
 
 Main> ((comoEsta).(reconocerAmigo rodri).(reconocerAmigo ana)) marcos
 "fresco"
--------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
 PUNTO 4
--------------------------------------------------------------------------
-Main> reconocerAmigo rodri rodri
+------------------------------------------------------------------------------------------------------------
+Main> reconocerAmigo rodri rodri // No agrega a nadie como Amigo porque el ya es amigo de si mismo
 Cliente "Rodri" 55 []
 
-Main> reconocerAmigo marcos rodri
+Main> reconocerAmigo marcos rodri // Queda igual porque rodri ya es amigo de marcos
 Cliente "Marcos" 40 [Cliente "Rodri" 55 []]
 
-Main> reconocerAmigo rodri marcos
+Main> reconocerAmigo rodri marcos // Rodri originalmente no tiene amigos y ahora tiene a marcos como amigo
 Cliente "Rodri" 55 [Cliente "Marcos" 40 [Cliente "Rodri" 55 []]]
+-------------------------------------------------------------------------------------------------------------
+PUNTO 5 
+-------------------------------------------------------------------------------------------------------------
+Main> grog ana
+Cliente "Ana" 0 [Cliente "Marcos" 40 [Cliente "Rodri" 55 []],Cliente "Rodri" 55 []]
+
+Main> jarraLoca ana
+Cliente "Ana" 110 [Cliente "Marcos" 30 [Cliente "Rodri" 45 []],Cliente "Rodri" 45 []]
+
+Main> klusener "huevo" ana
+Cliente "Ana" 115 [Cliente "Marcos" 40 [Cliente "Rodri" 55 []],Cliente "Rodri" 55 []]
+
+Main> klusener "chocolate" ana
+Cliente "Ana" 111 [Cliente "Marcos" 40 [Cliente "Rodri" 55 []],Cliente "Rodri" 55 []]
+
+Main> tintico cristian
+Cliente "Cristian" 2 []
+
+Main> tintico ana
+Cliente "Ana" 130 [Cliente "Marcos" 40 [Cliente "Rodri" 55 []],Cliente "Rodri" 55 []]
+
+Main> soda 2 rodri
+Cliente "errpRodri" 55 []
+
+Main> soda 10 ana
+Cliente "errrrrrrrrrpAna" 120 [Cliente "Marcos" 40 [Cliente "Rodri" 55 []],Cliente "Rodri" 55 []]
+
+Main> soda 0 ana
+Cliente "epAna" 120 [Cliente "Marcos" 40 [Cliente "Rodri" 55 []],Cliente "Rodri" 55 []]
+---------------------------------------------------------------------------------------------------------------
+PUNTO 6
+---------------------------------------------------------------------------------------------------------------
+Main> rescatarse 5 rodri
+Cliente "Rodri" 255 []
+
+Main> rescatarse 1 rodri
+Cliente "Rodri" 155 []
+---------------------------------------------------------------------------------------------------------------
+PUNTO 7
+---------------------------------------------------------------------------------------------------------------
+Main> ((klusener "huevo").(rescatarse 2).(klusener "chocolate").(jarraLoca)) ana
+Cliente "Ana" 196 [Cliente "Marcos" 30 [Cliente "Rodri" 45 []],Cliente "Rodri" 45 []]
