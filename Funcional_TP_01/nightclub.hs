@@ -56,8 +56,13 @@ rescatarse horas cliente
 -- comentado para que compile, la siguiente línea se corre por consola.
 -- klusener huevo (rescatarse 2 (klusener chocolate (jarraLoca ana)))
 
+resistenciaKlunster sabor = length(sabor)
+
 data Bebida = Bebida {nombreBebida::String, resistenciaBebida::Int} deriving (Show)
-jarraLoca = Bebida "jarra loca" 200
+jarraLoca = Bebida "jarra loca" 10
+klunsterSabor sabor = Bebida ("Klunster sabor "++ sabor) (length(sabor))
+tinticoB cliente = Bebida ("Tintico") (5* length(amigos cliente))
+sodaB = Bebida "Soda" 0
 
 tomar:: Bebida->Cliente->Cliente
 
