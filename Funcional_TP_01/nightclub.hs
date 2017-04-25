@@ -18,10 +18,10 @@ cristian = Cliente "Cristian" 2 []
 ana = Cliente "Ana" 120 [marcos,rodri]
 
 -- Punto 3----------------------------------------------------------------------------------------------------------------
-comoEsta::Cliente->String 
+comoEsta::Cliente->String --Correccion resuelto con composicion
 comoEsta cliente
-    |(resistencia cliente) > 50 = "fresco"
-    |length (amigos cliente) > 1 = "piola"
+    |((>50).(resistencia)) cliente = "fresco"
+    |((>1).(length).(amigos)) cliente = "piola"
     |otherwise = "duro"
 
 -- Punto 4----------------------------------------------------------------------------------------------------------------
