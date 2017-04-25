@@ -1,14 +1,14 @@
 -- Punto 1----------------------------------------------------------------------------------------------------------------
-data Cliente = Cliente String Int [Cliente] deriving (Show)
+data Cliente = Cliente {nombre :: String, resistencia :: Int, amigos :: [Cliente]} deriving (Show)
 
-nombre :: Cliente -> String
-nombre (Cliente nombre _ _) = nombre
+--nombre :: Cliente -> String
+--nombre (Cliente nombre _ _) = nombre
 
-resistencia :: Cliente -> Int
-resistencia (Cliente _ resistencia _) = resistencia
+--resistencia :: Cliente -> Int
+--resistencia (Cliente _ resistencia _) = resistencia
 
-amigos :: Cliente -> [Cliente]
-amigos (Cliente _ _ amigos) = amigos
+--amigos :: Cliente -> [Cliente]
+--amigos (Cliente _ _ amigos) = amigos
 
 -- Punto 2----------------------------------------------------------------------------------------------------------------
 
@@ -18,18 +18,19 @@ cristian = Cliente "Cristian" 2 []
 ana = Cliente "Ana" 120 [marcos,rodri]
 
 -- Punto 3----------------------------------------------------------------------------------------------------------------
-comoEsta::Cliente->String
-comoEsta cliente 
-    |resistencia cliente > 50 = "fresco"
+comoEsta::Cliente->String 
+comoEsta cliente
+    |(resistencia cliente) > 50 = "fresco"
     |length (amigos cliente) > 1 = "piola"
     |otherwise = "duro"
 
 -- Punto 4----------------------------------------------------------------------------------------------------------------
-esAmigoNuevo::Cliente->Cliente->Bool
-esAmigoNuevo cliente amigo = not (any (==nombre amigo) (map nombre (amigos cliente))) && (nombre cliente /= nombre amigo)
+esAmigoNuevo::Cliente->Cliente->Bool -- Correccion simplificacion de funcion usando notElem
+esAmigoNuevo cliente amigo =  (notElem (nombre amigo) (map nombre (amigos cliente))) && (nombre cliente /= nombre amigo)
 
-reconocerAmigo::Cliente->Cliente->Cliente
-reconocerAmigo cliente amigo
+--Correccion usando funcion Error
+reconocerAmigo cliente amigo	
+    | nombre cliente == nombre amigo = error "El cliente no puede ser igual al amigo"
     | esAmigoNuevo cliente amigo = Cliente (nombre cliente) (resistencia cliente) ((amigos cliente) ++ [amigo])
     | otherwise = Cliente (nombre cliente) (resistencia cliente) (amigos cliente)
 
@@ -50,10 +51,14 @@ soda::Int->Cliente->Cliente
 soda fuerza cliente = Cliente ("e" ++ (replicate fuerza 'r') ++ "p" ++ (nombre cliente)) (resistencia cliente) (amigos cliente)
 
 -- Punto 6----------------------------------------------------------------------------------------------------------------
+ --Correccion usando una abstraccion
+aumentaResistencia cliente valor = Cliente (nombre cliente) (resistencia cliente + valor) (amigos cliente)
+
 rescatarse::Int->Cliente->Cliente
 rescatarse horas cliente
-    | horas > 3 = Cliente (nombre cliente) (resistencia cliente + 200) (amigos cliente)
-    | otherwise = Cliente (nombre cliente) (resistencia cliente + 100) (amigos cliente)
+    | horas > 3 = aumentaResistencia cliente 200
+    | otherwise = aumentaResistencia cliente 100
+ 
 
 -- Punto 7----------------------------------------------------------------------------------------------------------------
 
