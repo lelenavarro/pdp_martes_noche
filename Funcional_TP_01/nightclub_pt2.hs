@@ -1,4 +1,5 @@
 --Night Club 2 - Grupo 01
+import Data.List
 
 --Punto 01
 
@@ -77,11 +78,23 @@ cuantasPuedeTomar cliente = (length.(cualesPuedeTomar cliente))
 --Punto 03.A
 robertoCarlos = Cliente "Roberto Carlos" 165 [] []
 
-mezclaExplosiva = (2.5, [beber GrogXD, beber GrogXD, beber (Klusener "Huevo"), beber (Klusener "Frutilla")])
-itinerarioBasico = (5.0, [beber JarraLoca, beber (Klusener "Chocolate"), rescatarse 2, beber (Klusener "Huevo")])
-salidaDeAmigos = (1.0, [beber (Soda 1), beber Tintico, reconocerAmigo robertoCarlos, beber JarraLoca])
+mezclaExplosiva = (2.5, [beber GrogXD, beber GrogXD, beber (Klusener "Huevo"), beber (Klusener "Frutilla")]) deriving Show
+itinerarioBasico = (5.0, [beber JarraLoca, beber (Klusener "Chocolate"), rescatarse 2, beber (Klusener "Huevo")]) deriving Show
+salidaDeAmigos = (1.0, [beber (Soda 1), beber Tintico, reconocerAmigo robertoCarlos, beber JarraLoca]) deriving Show
 
 --Punto 03.B
 ejecutarItinerario itinerario cliente = ejecutar (snd itinerario) cliente
 ejecutar [] cliente = cliente
 ejecutar (cabItinerario:colaItinerario) cliente = ejecutar colaItinerario (cabItinerario cliente)
+
+
+--Punto 04.A
+intensidad itinerario = 1 * genericLength(snd itinerario)/(fst itinerario)
+
+--Punto 04.B
+buscar max [] = max
+buscar max (head:tail) 
+    | intensidad max > intensidad head = buscar max (tail)
+    |otherwise = buscar head (tail)
+
+ejecutarMasIntenso cliente (head:tail) = ejecutarItinerario (buscar head tail) cliente
