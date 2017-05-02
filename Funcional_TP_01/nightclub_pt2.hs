@@ -78,9 +78,9 @@ cuantasPuedeTomar cliente = (length.(cualesPuedeTomar cliente))
 --Punto 03.A
 robertoCarlos = Cliente "Roberto Carlos" 165 [] []
 
-mezclaExplosiva = (2.5, [beber GrogXD, beber GrogXD, beber (Klusener "Huevo"), beber (Klusener "Frutilla")]) deriving Show
-itinerarioBasico = (5.0, [beber JarraLoca, beber (Klusener "Chocolate"), rescatarse 2, beber (Klusener "Huevo")]) deriving Show
-salidaDeAmigos = (1.0, [beber (Soda 1), beber Tintico, reconocerAmigo robertoCarlos, beber JarraLoca]) deriving Show
+mezclaExplosiva = (2.5, [beber GrogXD, beber GrogXD, beber (Klusener "Huevo"), beber (Klusener "Frutilla")])
+itinerarioBasico = (5.0, [beber JarraLoca, beber (Klusener "Chocolate"), rescatarse 2, beber (Klusener "Huevo")])
+salidaDeAmigos = (1.0, [beber (Soda 1), beber Tintico, reconocerAmigo robertoCarlos, beber JarraLoca])
 
 --Punto 03.B
 ejecutarItinerario itinerario cliente = ejecutar (snd itinerario) cliente
