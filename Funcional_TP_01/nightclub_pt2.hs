@@ -41,9 +41,9 @@ soda fuerza cliente = Cliente ("e" ++ (replicate fuerza 'r') ++ "p" ++ (nombre c
 
 esAmigoNuevo cliente amigo =  (notElem (nombre amigo) (map nombre (amigos cliente))) && (nombre cliente /= nombre amigo)
 
-reconocerAmigo cliente amigo
+reconocerAmigo amigo cliente
     | nombre cliente == nombre amigo = error "El cliente no puede ser igual al amigo"
-    | esAmigoNuevo cliente amigo = Cliente (nombre cliente) (resistencia cliente) ((amigos cliente) ++ [amigo]) (bebidas cliente)
+    | esAmigoNuevo cliente amigo = Cliente (nombre cliente) (resistencia cliente) ([amigo] ++ (amigos cliente)) (bebidas cliente)
     | otherwise = Cliente (nombre cliente) (resistencia cliente) (amigos cliente) (bebidas cliente)
 
 aumentaResistencia cliente valor = Cliente (nombre cliente) (resistencia cliente + valor) (amigos cliente) (bebidas cliente)
