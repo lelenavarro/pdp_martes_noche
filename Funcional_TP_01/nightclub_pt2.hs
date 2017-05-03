@@ -98,3 +98,22 @@ buscar max (head:tail)
     |otherwise = buscar head (tail)
 
 ejecutarMasIntenso cliente (head:tail) = ejecutarItinerario (buscar head tail) cliente
+
+--Punto 05
+
+todasLasSodas n = (Soda n) : (todasLasSodas (n + 1))
+
+chuckNorris = Cliente "Chuck" 1000 [ana] (todasLasSodas 1)
+
+--Si puede pedir dameOtro porque sería infinito "más uno".
+--Si se puede preguntar si chuckNorris tiene más resistencia que ana porque son dos valores de tipo Eq ya que son Int.
+
+--Punto 06
+
+laJarraPopular 0 cliente = cliente
+laJarraPopular espirituosidad (Cliente nombre resistencia (cab:cola) bebidas) = laJarraPopular (espirituosidad - 1) (hacerGrupoAmigos ((Cliente nombre resistencia (cab:cola) bebidas)) cab)
+
+hacerGrupoAmigos cliente (Cliente nombre resistencia amigos bebidas) = hacerMuchosAmigos cliente amigos
+
+hacerMuchosAmigos cliente [] = cliente
+hacerMuchosAmigos cliente (cab:cola) = hacerMuchosAmigos (reconocerAmigo cab cliente) cola
