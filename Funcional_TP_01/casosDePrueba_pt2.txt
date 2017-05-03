@@ -1,0 +1,60 @@
+--Punto 1.b
+
+*Main> soda 3 marcos
+Cliente {nombre = "errrpMarcos", resistencia = 40, amigos = [Cliente {nombre = "Rodri", resistencia = 55, amigos = [], bebidas = [Tintico]}], bebidas = [Soda 3,Klusener "Guinda"]}
+
+--Punto 1.c
+
+*Main> tomarTragos rodri [(Soda 1),(Soda 2) ]
+Cliente {nombre = "errperpRodri", resistencia = 55, amigos = [], bebidas = [Soda 2,Soda 1,Tintico]}
+
+*Main> tomarTragos marcos [(Klusener "huevo"), Tintico, JarraLoca]
+Cliente {nombre = "Marcos", resistencia = 30, amigos = [Cliente {nombre = "Rodri", resistencia = 45, amigos = [], bebidas = [JarraLoca,Tintico]}], bebidas = [JarraLoca,Tintico,Klusener "huevo",Klusener "Guinda"]}
+
+--Punto 1.d
+
+*Main> dameOtro ana
+*** Exception: nightclub_pt2.hs:62:1-136: Non-exhaustive patterns in function dameOtro
+
+*Main> dameOtro marcos
+Cliente {nombre = "Marcos", resistencia = 34, amigos = [Cliente {nombre = "Rodri", resistencia = 55, amigos = [], bebidas = [Tintico]}], bebidas = [Klusener "Guinda",Klusener "Guinda"]}
+
+*Main> dameOtro (soda 1 rodri)
+Cliente {nombre = "erperpRodri", resistencia = 55, amigos = [], bebidas = [Soda 1,Soda 1,Tintico]}
+
+--Punto 2.b
+
+*Main> cuantasPuedeTomar rodri [GrogXD, Tintico, (Klusener "frutilla")]
+2
+*Main> cuantasPuedeTomar rodri [GrogXD, Tintico, (Klusener "fruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuutilla")]
+1
+
+--Punto 3.b
+
+*Main> ejecutarItinerario salidaDeAmigos rodri
+Cliente {nombre = "erpRodri", resistencia = 45, amigos = [Cliente {nombre = "Roberto Carlos", resistencia = 155, amigos = [], bebidas = [JarraLoca]}], bebidas = [JarraLoca,Tintico,Soda 1,Tintico]}
+
+--Punto 4.a
+
+*Main> intensidad mezclaExplosiva
+1.6
+*Main> intensidad salidaDeAmigos
+4.0
+*Main> intensidad itinerarioBasico
+0.8
+
+--Punto 4.b
+
+*Main> ejecutarMasIntenso rodri [mezclaExplosiva, salidaDeAmigos, itinerarioBasico]
+Cliente {nombre = "erpRodri", resistencia = 45, amigos = [Cliente {nombre = "Roberto Carlos", resistencia = 155, amigos = [], bebidas = [JarraLoca]}], bebidas = [JarraLoca,Tintico,Soda 1,Tintico]}
+
+--Punto 6
+
+*Main> laJarraPopular 0 (reconocerAmigo ana robertoCarlos)
+Cliente {nombre = "Roberto Carlos", resistencia = 165, amigos = [Cliente {nombre = "Ana", resistencia = 120, amigos = [Cliente {nombre = "Marcos", resistencia = 40, amigos = [Cliente {nombre = "Rodri", resistencia = 55, amigos = [], bebidas = [Tintico]}], bebidas = [Klusener "Guinda"]},Cliente {nombre = "Rodri", resistencia = 55, amigos = [], bebidas = [Tintico]}], bebidas = []}], bebidas = []}
+
+*Main> laJarraPopular 3 (reconocerAmigo ana robertoCarlos)
+Cliente {nombre = "Roberto Carlos", resistencia = 165, amigos = [Cliente {nombre = "Ana", resistencia = 120, amigos = [Cliente {nombre = "Marcos", resistencia = 40, amigos = [Cliente {nombre = "Rodri", resistencia = 55, amigos = [], bebidas = [Tintico]}], bebidas = [Klusener "Guinda"]},Cliente {nombre = "Rodri", resistencia = 55, amigos = [], bebidas = [Tintico]}], bebidas = []},Cliente {nombre = "Marcos", resistencia = 40, amigos = [Cliente {nombre = "Rodri", resistencia = 55, amigos = [], bebidas = [Tintico]}], bebidas = [Klusener "Guinda"]},Cliente {nombre = "Rodri", resistencia = 55, amigos = [], bebidas = [Tintico]}], bebidas = []}
+
+*Main> laJarraPopular 4 (reconocerAmigo (reconocerAmigo ana cristian ) robertoCarlos)
+Cliente {nombre = "Roberto Carlos", resistencia = 165, amigos = [Cliente {nombre = "Rodri", resistencia = 55, amigos = [], bebidas = [Tintico]},Cliente {nombre = "Marcos", resistencia = 40, amigos = [Cliente {nombre = "Rodri", resistencia = 55, amigos = [], bebidas = [Tintico]}], bebidas = [Klusener "Guinda"]},Cliente {nombre = "Ana", resistencia = 120, amigos = [Cliente {nombre = "Marcos", resistencia = 40, amigos = [Cliente {nombre = "Rodri", resistencia = 55, amigos = [], bebidas = [Tintico]}], bebidas = [Klusener "Guinda"]},Cliente {nombre = "Rodri", resistencia = 55, amigos = [], bebidas = [Tintico]}], bebidas = []},Cliente {nombre = "Cristian", resistencia = 2, amigos = [Cliente {nombre = "Ana", resistencia = 120, amigos = [Cliente {nombre = "Marcos", resistencia = 40, amigos = [Cliente {nombre = "Rodri", resistencia = 55, amigos = [], bebidas = [Tintico]}], bebidas = [Klusener "Guinda"]},Cliente {nombre = "Rodri", resistencia = 55, amigos = [], bebidas = [Tintico]}], bebidas = []}], bebidas = [GrogXD,JarraLoca]}], bebidas = []}
