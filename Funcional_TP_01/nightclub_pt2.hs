@@ -1,6 +1,6 @@
 --Night Club 2 - Grupo 01
 import Data.List
-
+import Text.Show.Functions
 --Punto 01
 
 --Modificaciones en la abstraccion de cliente y otras funciones
@@ -56,11 +56,10 @@ rescatarse horas cliente
 --Punto 01.C 
 --listaH : lista Head; listaT : lista Tail
 tomarTragos cliente [] = cliente
-tomarTragos cliente (tragoH : tragoT) =  tomarTragos ((beber tragoH) cliente) tragoT
+tomarTragos cliente (tragoH : tragoT) = tomarTragos ((beber tragoH) cliente) tragoT
 
 --Punto 01.D
-dameOtro (Cliente nombre resistencia amigos (bebidaH:bebidasT)) = (beber bebidaH) (Cliente nombre resistencia amigos (bebidaH:bebidasT))
-
+dameOtro (Cliente nombre resistencia amigos bebidas) = beber (last (bebidas)) (Cliente nombre resistencia amigos bebidas)
 
 --Punto 02.A
 newResistencia cliente GrogXD = 0
@@ -74,27 +73,31 @@ cualesPuedeTomar cliente tragos = filter ((>0).newResistencia cliente) tragos
 --Punto 02.B
 cuantasPuedeTomar cliente = (length.(cualesPuedeTomar cliente))
 
-
 --Punto 03.A
 robertoCarlos = Cliente "Roberto Carlos" 165 [] []
 
-mezclaExplosiva = (2.5, [beber GrogXD, beber GrogXD, beber (Klusener "Huevo"), beber (Klusener "Frutilla")])
-itinerarioBasico = (5.0, [beber JarraLoca, beber (Klusener "Chocolate"), rescatarse 2, beber (Klusener "Huevo")])
-salidaDeAmigos = (1.0, [beber (Soda 1), beber Tintico, reconocerAmigo robertoCarlos, beber JarraLoca])
+data Itinerario = Itinerario {
+    nombreItinerario :: String,
+    duracion :: Float,
+    acciones :: [Cliente -> Cliente]
+} deriving (Show)
+
+mezclaExplosiva = Itinerario "Mezcla explosiva" 2.5 [beber GrogXD, beber GrogXD, beber (Klusener "Huevo"), beber (Klusener "Frutilla")]
+itinerarioBasico = Itinerario "Itinerario básico" 5 [beber JarraLoca, beber (Klusener "Chocolate"), rescatarse 2, beber (Klusener "Huevo")]
+salidaDeAmigos = Itinerario "Salida de Amigos" 1 [beber (Soda 1), beber Tintico, reconocerAmigo robertoCarlos, beber JarraLoca]
 
 --Punto 03.B
-ejecutarItinerario itinerario cliente = ejecutar (snd itinerario) cliente
-ejecutar [] cliente = cliente
-ejecutar (cabItinerario:colaItinerario) cliente = ejecutar colaItinerario (cabItinerario cliente)
-
+ejecutarItinerario :: Itinerario -> Cliente -> Cliente
+ejecutarItinerario itinerario = foldl1 (.) ((reverse.acciones) itinerario)
 
 --Punto 04.A
-intensidad itinerario = 1 * genericLength(snd itinerario)/(fst itinerario)
+intensidad :: Itinerario -> Float
+intensidad itinerario = (genericLength.acciones) itinerario / duracion itinerario
 
 --Punto 04.B
 buscar max [] = max
 buscar max (head:tail) 
-    | intensidad max > intensidad head = buscar max (tail)
+    |intensidad max > intensidad head = buscar max (tail)
     |otherwise = buscar head (tail)
 
 ejecutarMasIntenso cliente (head:tail) = ejecutarItinerario (buscar head tail) cliente
@@ -102,7 +105,6 @@ ejecutarMasIntenso cliente (head:tail) = ejecutarItinerario (buscar head tail) c
 --Punto 05
 
 todasLasSodas n = (Soda n) : (todasLasSodas (n + 1))
-
 chuckNorris = Cliente "Chuck" 1000 [ana] (todasLasSodas 1)
 
 --Punto 05.b
