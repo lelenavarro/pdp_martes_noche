@@ -105,8 +105,13 @@ todasLasSodas n = (Soda n) : (todasLasSodas (n + 1))
 
 chuckNorris = Cliente "Chuck" 1000 [ana] (todasLasSodas 1)
 
---Si puede pedir dameOtro porque sería infinito "más uno".
---Si se puede preguntar si chuckNorris tiene más resistencia que ana porque son dos valores de tipo Eq ya que son Int.
+--Punto 05.b
+--No, chuckNorris no puede pedir otro trago con la función dameOtro porque esta funcion utiliza el ultimo elemento de la lista de bebibas del cliente, 
+--y la lista de chuck es infinita; y Haskell usa evalucion diferida para intentar encontrar cual es la ultima bebida y no la va a encontrar.
+
+--Punto 05.d
+--Si, se puede. Porque Haskell al usar "lazy evaluation", solo revisa la resistencia de ambos y no llega a revisar la lista infinita que tiene 
+--el cliente chuckNorris
 
 --Punto 06
 
