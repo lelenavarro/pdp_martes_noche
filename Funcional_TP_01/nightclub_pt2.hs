@@ -54,9 +54,7 @@ rescatarse horas cliente
 
 
 --Punto 01.C 
---listaH : lista Head; listaT : lista Tail
-tomarTragos cliente [] = cliente
-tomarTragos cliente (tragoH : tragoT) = tomarTragos ((beber tragoH) cliente) tragoT
+tomarTragos cliente tragos = foldr beber cliente tragos
 
 --Punto 01.D
 dameOtro (Cliente nombre resistencia amigos bebidas) = beber (last (bebidas)) (Cliente nombre resistencia amigos bebidas)
