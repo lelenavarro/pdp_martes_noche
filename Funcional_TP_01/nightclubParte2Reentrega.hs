@@ -1,11 +1,10 @@
 import Text.Show.Functions
 import Data.List
+
 -- Punto 1----------------------------------------------------------------------------------------------------------------
 data Cliente = Cliente {nombre :: String, resistencia :: Int, amigos :: [Cliente], bebidas :: [Cliente->Cliente]} deriving (Show)
 
-
 -- Punto 2----------------------------------------------------------------------------------------------------------------
-
 rodri = Cliente "Rodri" 55 [] [tintico]
 marcos = Cliente "Marcos" 40 [rodri] [klusener "Guinda"]
 cristian = Cliente "Cristian" 2 [] [grog,jarraLoca]
@@ -20,7 +19,7 @@ comoEsta cliente
 
 -- Punto 4----------------------------------------------------------------------------------------------------------------
 esAmigoNuevo::Cliente->Cliente->Bool -- Correccion simplificacion de funcion usando notElem
-esAmigoNuevo cliente amigo =  (notElem (nombre amigo) (map nombre (amigos cliente))) && (nombre cliente /= nombre amigo)
+esAmigoNuevo cliente amigo = (notElem (nombre amigo) (map nombre (amigos cliente))) && (nombre cliente /= nombre amigo)
 
 --Correccion usando funcion Error
 reconocerAmigo cliente amigo
@@ -53,17 +52,15 @@ rescatarse horas cliente
     | horas > 3 = aumentaResistencia cliente 200
     | otherwise = aumentaResistencia cliente 100
  
-
 -- Punto 7----------------------------------------------------------------------------------------------------------------
-
 --Consulta ejecucion en consola
 --((klusener "huevo").(rescatarse 2).(klusener "chocolate").(jarraLoca)) ana
 
+aplicarFuncion::Cliente->(Cliente->Cliente)->Cliente
+aplicarFuncion cliente funcion = funcion cliente
 
 --Parte 2 - Punto 1-------------------------------------------------------------------------------------------------------
-tomarTragos::Cliente->[Cliente->Cliente]->Cliente
-tomarTragos cliente [] = cliente
-tomarTragos cliente (x:xs) = tomarTragos (x cliente) xs
+tomarTragos cliente tragos = foldl aplicarFuncion cliente tragos
 
 dameOtro::Cliente->Cliente
 dameOtro cliente =  last (bebidas cliente) cliente
@@ -86,9 +83,6 @@ itinerarioVacio = Itinerario "Itinerario Vacio" 0 []
 mezclaExplosiva = Itinerario "Mezcla Explosiva" 2.5 [grog, grog, klusener "Huevo", klusener "Frutilla"]
 itinerarioBasico = Itinerario "Itinerario Basico" 5.0 [jarraLoca, klusener "Chocolate", rescatarse 2, klusener "Huevo"]
 salidaDeAmigos = Itinerario  "Salida de Amigos" 1.0 [soda 1, tintico, flip reconocerAmigo robertoCarlos, jarraLoca]
-
-aplicarFuncion::Cliente->(Cliente->Cliente)->Cliente
-aplicarFuncion cliente funcion = funcion cliente
 
 hacerItinerario::Cliente->Itinerario->Cliente
 hacerItinerario cliente itinerario = foldl (aplicarFuncion) cliente (accionItinerario itinerario)
@@ -123,5 +117,3 @@ hacerGrupoAmigos cliente (Cliente nombre resistencia amigos bebidas) = hacerMuch
 
 hacerMuchosAmigos cliente [] = cliente
 hacerMuchosAmigos cliente (cab:cola) = hacerMuchosAmigos (reconocerAmigo cab cliente) cola
-
-
