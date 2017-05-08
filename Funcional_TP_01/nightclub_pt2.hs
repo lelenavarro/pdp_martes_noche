@@ -93,12 +93,22 @@ intensidad :: Itinerario -> Float
 intensidad itinerario = (genericLength.acciones) itinerario / duracion itinerario
 
 --Punto 04.B
-buscar max [] = max
-buscar max (head:tail) 
-    |intensidad max > intensidad head = buscar max (tail)
-    |otherwise = buscar head (tail)
+itinerarioVacio = Itinerario "Itinerario Vacio" 0 []
 
-ejecutarMasIntenso cliente (head:tail) = ejecutarItinerario (buscar head tail) cliente
+aplicarFuncion::Cliente -> (Cliente -> Cliente) -> Cliente
+aplicarFuncion cliente funcion = funcion cliente
+
+hacerItinerario::Cliente -> Itinerario -> Cliente
+hacerItinerario cliente itinerario = foldl (aplicarFuncion) cliente (acciones itinerario)
+
+maximaIntensidad:: Itinerario -> Itinerario -> Itinerario
+maximaIntensidad itinerario1 itinerario2 
+  |(intensidad itinerario1) > (intensidad itinerario2) = itinerario1
+  |otherwise = itinerario2
+
+ejecutarMasIntenso:: Cliente -> [Itinerario] -> Cliente
+ejecutarMasIntenso cliente listaItinerarios = hacerItinerario cliente (foldl (maximaIntensidad) itinerarioVacio listaItinerarios)
+
 
 --Punto 05
 

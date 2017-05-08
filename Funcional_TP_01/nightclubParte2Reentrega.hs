@@ -23,7 +23,7 @@ esAmigoNuevo::Cliente->Cliente->Bool -- Correccion simplificacion de funcion usa
 esAmigoNuevo cliente amigo =  (notElem (nombre amigo) (map nombre (amigos cliente))) && (nombre cliente /= nombre amigo)
 
 --Correccion usando funcion Error
-reconocerAmigo cliente amigo	
+reconocerAmigo cliente amigo
     | nombre cliente == nombre amigo = error "El cliente no puede ser igual al amigo"
     | esAmigoNuevo cliente amigo = Cliente (nombre cliente) (resistencia cliente) ((amigos cliente) ++ [amigo]) (bebidas cliente)
     | otherwise = Cliente (nombre cliente) (resistencia cliente) (amigos cliente) (bebidas cliente)
@@ -99,8 +99,8 @@ intensidad itinerario = 1 * genericLength(accionItinerario itinerario) / duracio
 
 maximaIntensidad::Itinerario->Itinerario->Itinerario
 maximaIntensidad itinerario1 itinerario2 
-										| (intensidad itinerario1) > (intensidad itinerario2) = itinerario1
-									    | otherwise = itinerario2
+  | (intensidad itinerario1) > (intensidad itinerario2) = itinerario1
+  | otherwise = itinerario2
 
 hacerElMasIntenso::Cliente->[Itinerario]->Cliente
 hacerElMasIntenso cliente listaItinerarios = hacerItinerario cliente (foldl (maximaIntensidad) itinerarioVacio listaItinerarios)
