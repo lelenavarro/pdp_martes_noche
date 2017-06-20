@@ -1,38 +1,39 @@
-/* GRUPO 01 - TP LOGICO PARTE 01 */
+/* GRUPO 01 - TP LOGICO Programadores */
+/* PARTE 01 */
 
 /* Requerimientos Basicos */
 /* Punto 01 */
-programaEn(isabel, cobol).
-programaEn(isabel, visualBasic).
-programaEn(isabel, java).
+programaEn(fernando, cobol).
+programaEn(fernando, visualBasic).
+programaEn(fernando, java).
 programaEn(julieta, java).
 programaEn(marcos, java).
 /*programaEn(julieta, go) no se sabe */
 programaEn(santiago, java).
 programaEn(santiago, ecmaScript).
 
-trabajaDe(isabel, analistaFuncional).
+trabajaDe(fernando, analistaFuncional).
 trabajaDe(andres, proyectLeader).
 
 esProgramador(Persona):- programaEn(Persona, _).
 
 /* Punto 02 */
 /*
-programaEn(isabel, Lenguaje).
+programaEn(fernando, Lenguaje).
 programaEn(Persona, java).
 programaEn(Persona, assembler).
-esProgramador(isabel).
-trabajaDe(isabel, Rol).
+esProgramador(fernando).
+trabajaDe(fernando, Rol).
 esProgramador(Persona).
 trabajaDe(Persona, proyectLeader).
 */
 
-/* Proyectos */
-/* Punto 01 */
+/* PARTE 02 */
+/* Punto 02: Proyectos */
 proyecto(sumatra, [java, net]).
 proyecto(prometeus, [cobol]).
 
-trabajaEn(isabel, prometeus).
+trabajaEn(fernando, prometeus).
 trabajaEn(santiago, prometeus).
 trabajaEn(julieta, sumatra).
 trabajaEn(marcos, sumatra).
