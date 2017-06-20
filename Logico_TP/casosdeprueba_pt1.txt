@@ -1,14 +1,14 @@
 Punto 2.2
 
 a. ¿Qué lenguajes sabe programar Isabel ?
-1 ?- programaEn(isabel, Lenguaje).
+1 ?- programaEn(fernando, Lenguaje).
 Lenguaje = cobol ;
 Lenguaje = visualBasic ;
 Lenguaje = java.
 
 b. ¿Quiénes programan en Java?
 2 ?- programaEn(Persona, java).
-Persona = isabel ;
+Persona = fernando ;
 Persona = julieta ;
 Persona = marcos ;
 Persona = santiago.
@@ -18,16 +18,16 @@ c. ¿Existe algún programador de Assembler?
 false.
 
 d. Isabel , ¿es programador?
-4 ?- esProgramador(isabel).
+4 ?- esProgramador(fernando).
 true 
 
 e. ¿Qué roles cumple Isabel ?
-5 ?- trabajaDe(isabel, Rol).
+5 ?- trabajaDe(fernando, Rol).
 Rol = analistaFuncional.
 
 f. ¿Quiénes son programadores?
 6 ?- esProgramador(Persona).
-Persona = isabel ;
+Persona = fernando ;
 Persona = isabel ;
 Persona = isabel ;
 Persona = julieta ;
@@ -38,5 +38,3 @@ Persona = santiago.
 g. ¿Existe algún project leader?
 7 ?- trabajaDe(Persona, proyectLeader).
 Persona = andres.
-
-Punto 3.1
