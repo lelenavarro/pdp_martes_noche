@@ -39,4 +39,9 @@ trabajaEn(julieta, sumatra).
 trabajaEn(marcos, sumatra).
 trabajaEn(andres, sumatra).
 
-/* Punto 02 */
+/*proyectoCorrecto(Persona, Proyecto):- trabajaEn(Persona, Proyecto),*/ 
+proyectoCorrecto(Persona, Proyecto):- trabajaEn(Persona, Proyecto), trabajaDe(Persona, analistaFuncional).
+proyectoCorrecto(Persona, Proyecto):- trabajaEn(Persona, Proyecto), trabajaDe(Persona, proyectLeader).
+
+/* Punto 03: Validación de Proyectos */
+proyectoCorrecto(Proyecto):-
