@@ -5,8 +5,9 @@ true.
 2 ?- bienDefinido(prometeus).
 false.
 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Punto 6.1
+PUNTO 6.1
 1.      Saber si Isabel es copado con Santiago. Esto es correcto.
 1 ?- esCopadoCon(isabel, santiago).
 true.
@@ -64,3 +65,28 @@ false.
 7.      Marcos no puede enseñar nada a nadie (¡¡perdón Marcos!!).
 7 ?- canTeach(marcos, Persona, Lenguaje).
 false.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+PUNTO 7.1
+1.      Isabel tiene 24 de seniority.
+1 ?- gradoSenior(isabel, Puntos).
+Puntos = 24 ;
+Puntos = 24 ;
+Puntos = 24 ;
+Puntos = 24.
+
+2.   Se debe poder consultar quiénes tienen grado 0 de seniority, que es el universo compuesto por Santiago y Andrés.
+2 ?- gradoSenior(Persona, 0).
+Persona = santiago ;
+Persona = santiago ;
+Persona = andres.
+
+3.      Julieta no tiene seniority 6.
+3 ?- gradoSenior(julieta, 6).
+false.
+
+4.      Julieta tiene seniority 7.
+4 ?- gradoSenior(julieta, 7).
+true 
+

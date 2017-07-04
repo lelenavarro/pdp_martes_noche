@@ -84,3 +84,41 @@ canTeach(Persona, Alguien, Lenguaje):- persona(Alguien), programaEn(Persona, Len
 7. canTeach(marcos, Persona, Lenguaje).
 */
 
+/* Punto 7: Seniority */
+
+/* Base de Conocimiento */
+tarea(isabel , evolutiva(compleja)). 
+tarea(isabel, correctiva(8, brainfuck)).
+tarea(isabel, algoritmica(150)).
+tarea(marcos, algoritmica(20)).
+tarea(julieta, correctiva(412, cobol)).
+tarea(julieta, correctiva(21, go)).
+tarea(julieta, evolutiva(simple)).
+ 
+puntosSenior(evolutiva(compleja), 5).
+puntosSenior(evolutiva(simple), 3).
+
+puntosSenior(correctiva(CantidadDeLineas, _), 4) :- CantidadDeLineas > 50.
+puntosSenior(correctiva(_, brainfuck), 4).
+
+puntosSenior(algoritmica(CantidadDeLineas), Puntos) :- Puntos is CantidadDeLineas / 10.
+
+gradoSenior(Persona, GradoDeSeniority) :- persona(Persona), findall(Puntos, (tarea(Persona, Tarea), puntosSenior(Tarea, Puntos)), ListaDePuntos), sumlist(ListaDePuntos, GradoDeSeniority).
+
+/*			 
+gradoSenior(Persona, evolutiva(compleja)):- persona(Persona), Grado is Grado + 5.
+gradoSenior(Persona, evolutiva(simple)):- persona(Persona), Grado is Grado + 3.
+
+gradoSenior(Persona, correctiva(X, _)):- persona(Persona), X > 50, Grado is Grado + 4.
+gradoSenior(Persona, correctiva(_, Lenguaje)):- persona(Persona), Lenguaje == brainfuck, Grado is Grado + 4.
+
+gradoSenior(Persona, algoritmica(Lineas)):- persona(Persona), Grado is Grado + (Lineas / 10).
+*/
+
+/* Punto 7.1 */
+/*
+gradoSenior(isabel, Puntos).
+gradoSenior(Persona, 0).
+gradoSenior(julieta, 6).
+gradoSenior(julieta, 7).
+*/
