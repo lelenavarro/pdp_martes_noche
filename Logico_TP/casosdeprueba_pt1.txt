@@ -1,14 +1,14 @@
 Punto 2.2
 
 a. ¿Qué lenguajes sabe programar Isabel ?
-1 ?- programaEn(fernando, Lenguaje).
+1 ?- programaEn(isabel, Lenguaje).
 Lenguaje = cobol ;
 Lenguaje = visualBasic ;
 Lenguaje = java.
 
 b. ¿Quiénes programan en Java?
 2 ?- programaEn(Persona, java).
-Persona = fernando ;
+Persona = isabel ;
 Persona = julieta ;
 Persona = marcos ;
 Persona = santiago.
@@ -18,16 +18,16 @@ c. ¿Existe algún programador de Assembler?
 false.
 
 d. Isabel , ¿es programador?
-4 ?- esProgramador(fernando).
+4 ?- esProgramador(isabel).
 true 
 
 e. ¿Qué roles cumple Isabel ?
-5 ?- trabajaDe(fernando, Rol).
+5 ?- trabajaDe(isabel, Rol).
 Rol = analistaFuncional.
 
 f. ¿Quiénes son programadores?
 6 ?- esProgramador(Persona).
-Persona = fernando ;
+Persona = isabel ;
 Persona = isabel ;
 Persona = isabel ;
 Persona = julieta ;
@@ -38,3 +38,55 @@ Persona = santiago.
 g. ¿Existe algún project leader?
 7 ?- trabajaDe(Persona, proyectLeader).
 Persona = andres.
+
+
+3.1 Casos de prueba
+a. Al consultar los lenguajes del proyecto Sumatra deben estar en el universo de soluciones los lenguajes Java y .Net
+1 ?- proyecto(sumatra, Lenguaje).
+Lenguaje = java ;
+Lenguaje = net.
+
+b. No es cierto que haya otro lenguaje distinto de COBOL para el proyecto Prometeus
+2 ?- proyecto(prometeus, Lenguaje), Lenguaje \= cobol.
+false.
+
+c. Isabel trabaja en el proyecto Prometeus
+3 ?- trabajaEn(isabel, prometeus).
+true.
+
+d. Santiago trabaja en el proyecto Prometeus
+4 ?- trabajaEn(santiago, prometeus).
+true.
+
+e. El universo de personas del proyecto Sumatra se compone de Julieta, Marcos y Andrés
+5 ?- trabajaEn(Persona, sumatra).
+Persona = julieta ;
+Persona = marcos ;
+Persona = andres.
+
+f. En el proyecto Sumatra Julieta, Marcos y Andrés están bien asignados.
+6 ?- proyectoCorrecto(Persona, sumatra).
+Persona = julieta ;
+Persona = marcos ;
+Persona = andres.
+
+g. En el proyecto Prometeus solo Isabel está bien asignado.
+7 ?- proyectoCorrecto(Persona, prometeus).
+Persona = isabel ;
+Persona = isabel ;
+false.
+
+h. El universo de personas bien asignadas a algún proyecto se compone de Julieta, Marcos, Andrés y Isabel.
+8 ?Persona = isabel ;
+Persona = julieta ;
+Persona = marcos ;
+Persona = isabel ;
+Persona = andres.
+
+i. Los proyectos que tienen a alguien bien asignado es el universo conformado por Prometeus y Sumatra.
+9 ?- proyectoCorrecto(_, Proyecto).
+Proyecto = prometeus ;
+Proyecto = sumatra ;
+Proyecto = sumatra ;
+Proyecto = prometeus ;
+Proyecto = sumatra.
