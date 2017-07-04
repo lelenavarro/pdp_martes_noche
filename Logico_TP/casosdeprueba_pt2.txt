@@ -1,0 +1,66 @@
+Punto 5
+1 ?- bienDefinido(sumatra).
+true.
+
+2 ?- bienDefinido(prometeus).
+false.
+
+
+Punto 6.1
+1.      Saber si Isabel es copado con Santiago. Esto es correcto.
+1 ?- esCopadoCon(isabel, santiago).
+true.
+
+2.      Isabel no es copado con Julieta.
+2 ?- esCopadoCon(isabel, julieta).
+false.
+
+3.      Isabel le puede enseñar COBOL a Santiago, Julieta, Marcos y Andrés.
+3 ?- canTeach(isabel, Persona, cobol).
+Persona = julieta ;
+Persona = marcos ;
+Persona = santiago ;
+Persona = santiago ;
+Persona = andres ;
+false.
+
+4.      Es falso que Isabel le puede enseñar Haskell a alguien.
+4 ?- canTeach(isabel, Alguien, haskell).
+false.
+
+5.      A Andrés le pueden enseñar Java Isabel , Julieta y Santiago.
+5 ?- canTeach(Profe, andres, java).
+Profe = isabel ;
+Profe = julieta ;
+Profe = santiago ;
+false.
+
+6.      Isabel puede enseñarle COBOL, Visual Basic y Java a alguna persona.
+6 ?- canTeach(isabel, Persona, Lenguaje).
+Persona = julieta,
+Lenguaje = cobol ;
+Persona = julieta,
+Lenguaje = visualBasic ;
+Persona = marcos,
+Lenguaje = cobol ;
+Persona = marcos,
+Lenguaje = visualBasic ;
+Persona = santiago,
+Lenguaje = cobol ;
+Persona = santiago,
+Lenguaje = visualBasic ;
+Persona = santiago,
+Lenguaje = cobol ;
+Persona = santiago,
+Lenguaje = visualBasic ;
+Persona = andres,
+Lenguaje = cobol ;
+Persona = andres,
+Lenguaje = visualBasic ;
+Persona = andres,
+Lenguaje = java ;
+false.
+
+7.      Marcos no puede enseñar nada a nadie (¡¡perdón Marcos!!).
+7 ?- canTeach(marcos, Persona, Lenguaje).
+false.
