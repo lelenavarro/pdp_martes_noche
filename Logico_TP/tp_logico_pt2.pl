@@ -105,16 +105,6 @@ puntosSenior(algoritmica(CantidadDeLineas), Puntos) :- Puntos is CantidadDeLinea
 
 gradoSenior(Persona, GradoDeSeniority) :- persona(Persona), findall(Puntos, (tarea(Persona, Tarea), puntosSenior(Tarea, Puntos)), ListaDePuntos), sumlist(ListaDePuntos, GradoDeSeniority).
 
-/*			 
-gradoSenior(Persona, evolutiva(compleja)):- persona(Persona), Grado is Grado + 5.
-gradoSenior(Persona, evolutiva(simple)):- persona(Persona), Grado is Grado + 3.
-
-gradoSenior(Persona, correctiva(X, _)):- persona(Persona), X > 50, Grado is Grado + 4.
-gradoSenior(Persona, correctiva(_, Lenguaje)):- persona(Persona), Lenguaje == brainfuck, Grado is Grado + 4.
-
-gradoSenior(Persona, algoritmica(Lineas)):- persona(Persona), Grado is Grado + (Lineas / 10).
-*/
-
 /* Punto 7.1 */
 /*
 gradoSenior(isabel, Puntos).
