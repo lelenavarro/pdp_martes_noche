@@ -26,15 +26,12 @@ Persona = andres ;
 false.
 
 4.      Es falso que Isabel le puede enseñar Haskell a alguien.
-4 ?- canTeach(isabel, Alguien, haskell).
+4 ?- canTeach(isabel, _, haskell).
 false.
 
 5.      A Andrés le pueden enseñar Java Isabel , Julieta y Santiago.
-5 ?- canTeach(Profe, andres, java).
-Profe = isabel ;
-Profe = julieta ;
-Profe = santiago ;
-false.
+5 ?- canTeach(_, andres, java).
+true.
 
 6.      Isabel puede enseñarle COBOL, Visual Basic y Java a alguna persona.
 6 ?- canTeach(isabel, Persona, Lenguaje).
@@ -63,7 +60,7 @@ Lenguaje = java ;
 false.
 
 7.      Marcos no puede enseñar nada a nadie (¡¡perdón Marcos!!).
-7 ?- canTeach(marcos, Persona, Lenguaje).
+7 ?- canTeach(marcos, _, _).
 false.
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

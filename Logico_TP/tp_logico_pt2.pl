@@ -1,5 +1,6 @@
 /* GRUPO 01 - TP LOGICO Programadores */
 /* PARTE 1 */
+/* Primera Devolución */
 
 /* Requerimientos Basicos */
 /* Punto 1 */
@@ -57,7 +58,12 @@ i. proyectoCorrecto(_, Proyecto).
 */
 
 /* Punto 4: Validación de Proyectos */
-bienDefinido(Proyecto):- trabajaEn(Persona, Proyecto), trabajaEn(Persona2, Proyecto), proyectoCorrecto(Persona, Proyecto), proyectoCorrecto(Persona2, Proyecto), trabajaDe(Persona, proyectLeader), trabajaDe(Persona2, proyectLeader), not(Persona \= Persona2).
+/* Punto 4: Validación de Proyectos */
+bienAsignado(Proyecto):- trabajaEn(Persona, Proyecto), trabajaEn(Persona2, Proyecto), proyectoCorrecto(Persona, Proyecto), proyectoCorrecto(Persona2, Proyecto).
+
+unSoloLeader(Proyecto):- findall(Persona,(trabajaEn(Persona,Proyecto),trabajaDe(Persona,proyectLeader)),ListaPersonasProyectLeader), length(ListaPersonasProyectLeader,CantidadDeLideres), CantidadDeLideres = 1.
+
+bienDefinido(Proyecto):- bienAsignado(Proyecto), unSoloLeader(Proyecto).
 	
 /* Punto 6: ¿Te Copas? */
 esCopadoCon(isabel, santiago).
@@ -68,8 +74,8 @@ esCopadoCon(julieta, andres).
 persona(Persona):- programaEn(Persona, _).
 persona(Persona):- trabajaDe(Persona, _).
 	
-esCopadoConOtros(Persona, X):- esCopadoCon(Persona, X).
-esCopadoConOtros(Persona, X):- persona(X), esCopadoCon(Persona, Y), esCopadoConOtros(Y, X).
+esCopadoConOtros(Persona, OtraPersona):- esCopadoCon(Persona, OtraPersona).
+esCopadoConOtros(Persona, OtraPersona):- persona(OtraPersona), esCopadoCon(Persona, OtraMas), esCopadoConOtros(OtraMas, OtraPersona).
 
 canTeach(Persona, Alguien, Lenguaje):- persona(Alguien), programaEn(Persona, Lenguaje), not(programaEn(Alguien, Lenguaje)), esCopadoConOtros(Persona, Alguien).
 	
@@ -78,10 +84,10 @@ canTeach(Persona, Alguien, Lenguaje):- persona(Alguien), programaEn(Persona, Len
 1. esCopadoCon(isabel, santiago).
 2. esCopadoCon(isabel, julieta).
 3. canTeach(isabel, Persona, cobol).
-4. canTeach(isabel, Alguien, haskell).
-5. canTeach(Profe, andres, java).
+4. canTeach(isabel, _, haskell).
+5. canTeach(_, andres, java).
 6. canTeach(isabel, Persona, Lenguaje).
-7. canTeach(marcos, Persona, Lenguaje).
+7. canTeach(marcos, _, _).
 */
 
 /* Punto 7: Seniority */

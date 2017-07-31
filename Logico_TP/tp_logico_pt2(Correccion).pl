@@ -58,7 +58,7 @@ i. proyectoCorrecto(_, Proyecto).
 
 /* Punto 4: Validación de Proyectos */
 bienAsignado(Proyecto):- trabajaEn(Persona, Proyecto), trabajaEn(Persona2, Proyecto), proyectoCorrecto(Persona, Proyecto), proyectoCorrecto(Persona2, Proyecto).
-unSoloLeader(Proyecto):- findall(Persona,(trabajaEn(Persona,Proyecto),trabajaDe(Persona,proyectLeader)),ListaPersonasProyectLeader), size(ListaPersonasProyectLeader,CantidadDeLideres), CantidadDeLideres = 1.
+unSoloLeader(Proyecto):- findall(Persona,(trabajaEn(Persona,Proyecto),trabajaDe(Persona,proyectLeader)),ListaPersonasProyectLeader), length(ListaPersonasProyectLeader,CantidadDeLideres), CantidadDeLideres = 1.
 bienDefinido(Proyecto):- bienAsignado(Proyecto), unSoloLeader(Proyecto).
 	
 /* Punto 6: ¿Te Copas? */
