@@ -19,13 +19,13 @@ esProgramador(Persona):- programaEn(Persona, _).
 
 /* Punto 2 */
 /*
-programaEn(isabel, Lenguaje).
-programaEn(Persona, java).
-programaEn(Persona, assembler).
-esProgramador(isabel).
-trabajaDe(isabel, Rol).
-esProgramador(Persona).
-trabajaDe(Persona, proyectLeader).
+a. programaEn(isabel, Lenguaje).
+b. programaEn(Persona, java).
+c. programaEn(_, assembler).
+d. programaEn(isabel, _).
+e. trabajaDe(isabel, Rol).
+f. programaEn(Persona, _).
+g. trabajaDe(_, proyectLeader).
 */
 
 /* Punto 3: Proyectos */
@@ -46,7 +46,7 @@ proyectoCorrecto(Persona, Proyecto):- trabajaEn(Persona, Proyecto), trabajaDe(Pe
 /* Punto 3.1: Casos de Prueba*/
 /*
 a. proyecto(sumatra, Lenguaje).
-b. proyecto(prometeus, Lenguaje), Lenguaje \= cobol.
+b. proyecto(prometeus, Lenguaje), not(Lenguaje = cobol).
 c. trabajaEn(isabel, prometeus).
 d. trabajaEn(santiago, prometeus).
 e. trabajaEn(Persona, sumatra).

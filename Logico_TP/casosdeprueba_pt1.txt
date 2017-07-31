@@ -14,11 +14,11 @@ Persona = marcos ;
 Persona = santiago.
 
 c. ¿Existe algún programador de Assembler?
-3 ?- programaEn(Persona, assembler).
+3 ?- programaEn(_, assembler).
 false.
 
 d. Isabel , ¿es programador?
-4 ?- esProgramador(isabel).
+4 ?- programaEn(isabel, _).
 true 
 
 e. ¿Qué roles cumple Isabel ?
@@ -26,7 +26,7 @@ e. ¿Qué roles cumple Isabel ?
 Rol = analistaFuncional.
 
 f. ¿Quiénes son programadores?
-6 ?- esProgramador(Persona).
+6 ?- programaEn(Persona, _).
 Persona = isabel ;
 Persona = isabel ;
 Persona = isabel ;
@@ -36,8 +36,8 @@ Persona = santiago ;
 Persona = santiago.
 
 g. ¿Existe algún project leader?
-7 ?- trabajaDe(Persona, proyectLeader).
-Persona = andres.
+7 ?- trabajaDe(_, proyectLeader).
+true.
 
 
 3.1 Casos de prueba
@@ -47,7 +47,7 @@ Lenguaje = java ;
 Lenguaje = net.
 
 b. No es cierto que haya otro lenguaje distinto de COBOL para el proyecto Prometeus
-2 ?- proyecto(prometeus, Lenguaje), Lenguaje \= cobol.
+2 ?- proyecto(prometeus, Lenguaje), not(Lenguaje = cobol).
 false.
 
 c. Isabel trabaja en el proyecto Prometeus
