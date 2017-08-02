@@ -77,7 +77,8 @@ Persona = isabel ;
 false.
 
 h. El universo de personas bien asignadas a algún proyecto se compone de Julieta, Marcos, Andrés y Isabel.
-8 ?Persona = isabel ;
+8 ?proyectoCorrecto(Persona, _).
+Persona = isabel ;
 Persona = julieta ;
 Persona = marcos ;
 Persona = isabel ;

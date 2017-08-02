@@ -39,9 +39,11 @@ trabajaEn(julieta, sumatra).
 trabajaEn(marcos, sumatra).
 trabajaEn(andres, sumatra).
 
-proyectoCorrecto(Persona, Proyecto):- trabajaEn(Persona, Proyecto), proyecto(Proyecto, Lenguaje), programaEn(Persona, Lenguaje).
-proyectoCorrecto(Persona, Proyecto):- trabajaEn(Persona, Proyecto), trabajaDe(Persona, analistaFuncional).
-proyectoCorrecto(Persona, Proyecto):- trabajaEn(Persona, Proyecto), trabajaDe(Persona, proyectLeader).
+proyectoCorrecto(Persona, Proyecto):- trabajaEn(Persona, Proyecto), condicionesProyCorrecto(Persona, Proyecto). 
+
+condicionesProyCorrecto(Persona, Proyecto):- proyecto(Proyecto, Lenguaje), programaEn(Persona, Lenguaje).
+condicionesProyCorrecto(Persona, _):- trabajaDe(Persona, analistaFuncional).
+condicionesProyCorrecto(Persona, _):- trabajaDe(Persona, proyectLeader).
 
 /* Punto 3.1: Casos de Prueba*/
 /*
