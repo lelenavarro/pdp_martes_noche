@@ -1,9 +1,12 @@
 Punto 5
-1 ?- bienDefinido(sumatra).
-true.
+1 ?- proyecto(Proyecto, _),bienDefinido(Proyecto).
+Proyecto = sumatra .
 
 2 ?- bienDefinido(prometeus).
 false.
+
+3 ?- proyecto(Proyecto, _),not(bienDefinido(Proyecto)).
+Proyecto = prometeus.
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -16,25 +19,20 @@ true.
 2 ?- esCopadoCon(isabel, julieta).
 false.
 
-3.      Isabel le puede enseñar COBOL a Santiago, Julieta, Marcos y Andrés.
-3 ?- canTeach(isabel, Persona, cobol).
-Persona = julieta ;
-Persona = marcos ;
-Persona = santiago ;
-Persona = santiago ;
-Persona = andres ;
-false.
+3.      Isabel le puede enseé¦»r COBOL a Santiago, Julieta, Marcos y André–Ÿ.
+3 ?- ?- findall(Estudiante, canTeach(isabel,Estudiante,cobol),Estudiantes).
+Estudiantes = [julieta, marcos, santiago, santiago, andres].
 
-4.      Es falso que Isabel le puede enseñar Haskell a alguien.
+4.      Es falso que Isabel le puede enseé¦»r Haskell a alguien.
 4 ?- canTeach(isabel, _, haskell).
 false.
 
-5.      A Andrés le pueden enseñar Java Isabel , Julieta y Santiago.
-5 ?- canTeach(_, andres, java).
-true.
+5.      A André–Ÿ le pueden enseé¦»r Java Isabel , Julieta y Santiago.
+5 ?- findall(Instructor, canTeach(Instructor,andres,java), Instructores).
+Instructores = [isabel, julieta, santiago].
 
-6.      Isabel puede enseñarle COBOL, Visual Basic y Java a alguna persona.
-6 ?- canTeach(isabel, Persona, Lenguaje).
+6.      Isabel puede enseé¦»rle COBOL, Visual Basic y Java a alguna persona.
+6 ?- canTeach(isabel, _, Lenguaje).
 Persona = julieta,
 Lenguaje = cobol ;
 Persona = julieta,
@@ -59,7 +57,7 @@ Persona = andres,
 Lenguaje = java ;
 false.
 
-7.      Marcos no puede enseñar nada a nadie (¡¡perdón Marcos!!).
+7.      Marcos no puede enseé¦»r nada a nadie (ã€€perdé«‡ Marcos!!).
 7 ?- canTeach(marcos, _, _).
 false.
 
@@ -67,13 +65,10 @@ false.
 
 PUNTO 7.1
 1.      Isabel tiene 24 de seniority.
-1 ?- gradoSenior(isabel, Puntos).
-Puntos = 24 ;
-Puntos = 24 ;
-Puntos = 24 ;
-Puntos = 24.
+1 ?- gradoSenior(isabel, 24).
+true .
 
-2.   Se debe poder consultar quiénes tienen grado 0 de seniority, que es el universo compuesto por Santiago y Andrés.
+2.   Se debe poder consultar quié–šes tienen grado 0 de seniority, que es el universo compuesto por Santiago y André–Ÿ.
 2 ?- gradoSenior(Persona, 0).
 Persona = santiago ;
 Persona = santiago ;
