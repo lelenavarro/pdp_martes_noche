@@ -79,7 +79,7 @@ persona(Persona):- programaEn(Persona, _).
 persona(Persona):- trabajaDe(Persona, _).
 	
 esCopadoConOtros(Persona, OtraPersona):- esCopadoCon(Persona, OtraPersona).
-esCopadoConOtros(Persona, OtraPersona):- persona(OtraPersona), esCopadoCon(Persona, OtraMas), esCopadoConOtros(OtraMas, OtraPersona).
+esCopadoConOtros(Persona, OtraPersona):- esCopadoCon(Persona, OtraMas), esCopadoConOtros(OtraMas, OtraPersona).
 
 canTeach(Persona, Alguien, Lenguaje):- persona(Alguien), programaEn(Persona, Lenguaje), not(programaEn(Alguien, Lenguaje)), esCopadoConOtros(Persona, Alguien).
 	
