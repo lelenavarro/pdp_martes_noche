@@ -16,7 +16,7 @@ programaEn(santiago, java).
 programaEn(santiago, ecmaScript).
 
 trabajaDe(isabel, analistaFuncional).
-trabajaDe(andres, proyectLeader).
+trabajaDe(andres, projectLeader).
 
 esProgramador(Persona):- programaEn(Persona, _).
 
@@ -28,7 +28,7 @@ programaEn(Persona, assembler).
 esProgramador(isabel).
 trabajaDe(isabel, Rol).
 esProgramador(Persona).
-trabajaDe(Persona, proyectLeader).
+trabajaDe(Persona, projectLeader).
 */
 
 /* Punto 3: Proyectos */
@@ -45,7 +45,7 @@ trabajaEn(andres, sumatra).
 
 proyectoCorrecto(Persona, Proyecto):- trabajaEn(Persona, Proyecto), proyecto(Proyecto, Lenguaje), programaEn(Persona, Lenguaje).
 proyectoCorrecto(Persona, Proyecto):- trabajaEn(Persona, Proyecto), trabajaDe(Persona, analistaFuncional).
-proyectoCorrecto(Persona, Proyecto):- trabajaEn(Persona, Proyecto), trabajaDe(Persona, proyectLeader).
+proyectoCorrecto(Persona, Proyecto):- trabajaEn(Persona, Proyecto), trabajaDe(Persona, projectLeader).
 
 /* Punto 3.1: Casos de Prueba*/
 /*
@@ -89,7 +89,7 @@ canTeach(Persona, Alguien, Lenguaje):- persona(Alguien), programaEn(Persona, Len
 2. esCopadoCon(isabel, julieta).
 3. canTeach(isabel, Persona, cobol).
 4. canTeach(isabel, _, haskell).
-5. canTeach(_, andres, java).
+5. canTeach(Instructor, andres, java).
 6. canTeach(isabel, Persona, Lenguaje).
 7. canTeach(marcos, _, _).
 */
@@ -111,10 +111,9 @@ puntosSenior(evolutiva(simple), 3).
 puntosSenior(correctiva(CantidadDeLineas, _), 4) :- CantidadDeLineas > 50.
 puntosSenior(correctiva(_, brainfuck), 4).
 
-puntosSenior(algoritmica(CantidadDeLineas), Puntos) :- Puntos is CantidadDeLineas / 10.
+puntosDe(Persona,Puntos):-tarea(Persona, Tarea), puntosSenior(Tarea, Puntos).
 
-gradoSenior(Persona, GradoDeSeniority) :- persona(Persona), findall(Puntos, (tarea(Persona, Tarea), puntosSenior(Tarea, Puntos)), ListaDePuntos), sumlist(ListaDePuntos, GradoDeSeniority).
-
+gradoSenior(Persona, GradoDeSeniority) :- persona(Persona), findall(Puntos, puntosDe(Persona,Puntos), ListaDePuntos), sumlist(ListaDePuntos, GradoDeSeniority).
 /* Punto 7.1 */
 /*
 gradoSenior(isabel, Puntos).
