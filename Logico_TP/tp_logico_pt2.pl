@@ -111,6 +111,8 @@ puntosSenior(evolutiva(simple), 3).
 puntosSenior(correctiva(CantidadDeLineas, _), 4) :- CantidadDeLineas > 50.
 puntosSenior(correctiva(_, brainfuck), 4).
 
+puntosSenior(algoritmica(CantidadDeLineas), Puntos) :- Puntos is CantidadDeLineas / 10.
+
 puntosDe(Persona,Puntos):-tarea(Persona, Tarea), puntosSenior(Tarea, Puntos).
 
 gradoSenior(Persona, GradoDeSeniority) :- persona(Persona), findall(Puntos, puntosDe(Persona,Puntos), ListaDePuntos), sumlist(ListaDePuntos, GradoDeSeniority).
