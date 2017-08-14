@@ -3,7 +3,9 @@
 /* Primera Devolución */
 
 /* Requerimientos Basicos */
+
 /* Punto 1 */
+
 programaEn(isabel, cobol).
 programaEn(isabel, visualBasic).
 programaEn(isabel, java).
@@ -30,6 +32,7 @@ trabajaDe(Persona, proyectLeader).
 */
 
 /* Punto 3: Proyectos */
+
 proyecto(sumatra, java).
 proyecto(sumatra, net).
 proyecto(prometeus, cobol).
@@ -58,14 +61,15 @@ i. proyectoCorrecto(_, Proyecto).
 */
 
 /* Punto 4: Validación de Proyectos */
-/* Punto 4: Validación de Proyectos */
-bienAsignado(Proyecto):- trabajaEn(Persona, Proyecto), trabajaEn(Persona2, Proyecto), proyectoCorrecto(Persona, Proyecto), proyectoCorrecto(Persona2, Proyecto).
 
-unSoloLeader(Proyecto):- findall(Persona,(trabajaEn(Persona,Proyecto),trabajaDe(Persona,proyectLeader)),ListaPersonasProyectLeader), length(ListaPersonasProyectLeader,CantidadDeLideres), CantidadDeLideres = 1.
+bienAsignado(Proyecto):- proyecto(Proyecto, _), forall(trabajaEn(Persona, Proyecto), proyectoCorrecto(Persona, Proyecto)).
 
-bienDefinido(Proyecto):- bienAsignado(Proyecto), unSoloLeader(Proyecto).
+muchosLeaders(Proyecto):- trabajaEn(Persona,Proyecto), trabajaEn(Persona2,Proyecto), trabajaDe(Persona,projectLeader), trabajaDe(Persona2,projectLeader), Persona \= Persona2.
+
+bienDefinido(Proyecto):- proyecto(Proyecto, _), bienAsignado(Proyecto), trabajaEn(Persona,Proyecto), trabajaDe(Persona,projectLeader), not(muchosLeaders(Proyecto))..
 	
 /* Punto 6: ¿Te Copas? */
+
 esCopadoCon(isabel, santiago).
 esCopadoCon(santiago, julieta).
 esCopadoCon(santiago, marcos).
