@@ -28,8 +28,11 @@ Estudiantes = [julieta, marcos, santiago, santiago, andres].
 false.
 
 5.      A Andr閟 le pueden ense馻r Java Isabel , Julieta y Santiago.
-5 ?- findall(Instructor, canTeach(Instructor,andres,java), Instructores).
-Instructores = [isabel, julieta, santiago].
+?- canTeach(Instructor,andres,java).
+Instructor = isabel ;
+Instructor = julieta ;
+Instructor = santiago ;
+false.
 
 6.      Isabel puede ense馻rle COBOL, Visual Basic y Java a alguna persona.
 6 ?- canTeach(isabel, _, Lenguaje).
